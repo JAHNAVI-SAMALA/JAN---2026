@@ -1,0 +1,28 @@
+class Solution:
+    def separateSquares(self, squares: List[List[int]]) -> float:
+        events = []
+        total = 0
+
+        for x, y, s in squares:
+            events.append((y, s))
+            events.append((y + s, -s))
+            total += s * s
+
+        target = total / 2
+        events.sort()
+
+        prevY = events[0][0]
+        slope = 0
+        area = 0
+
+        for y, delta in events:
+            if y > prevY and slope > 0:
+                gained = slope * (y - prevY)
+                if area + gained >= target:
+                    return prevY + (target - area) / slope
+                area += gained
+
+            slope += delta
+            prevY = y
+
+        return prevY
