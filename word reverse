@@ -1,0 +1,5 @@
+s = input()
+l = list(s.split())
+l = l[::-1]
+s1 = " ".join(l)
+print(s1)
