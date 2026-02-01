@@ -1,0 +1,5 @@
+class Solution:
+    def minimumCost(self, nums: List[int]) -> int:
+        rem = nums[1:]
+        rem.sort()
+        return nums[0] + rem[0] + rem[1]
